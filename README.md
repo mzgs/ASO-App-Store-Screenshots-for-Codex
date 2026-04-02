@@ -192,3 +192,8 @@ Treat `screenshots/final/` as the upload-ready output folder.
 - Raw AI outputs should always be cropped and resized before final review.
 - If no image tool is available, the skill still handles analysis, pairing, and scaffold generation.
 - `scripts/compose.py` is the source of truth for headline layout, device placement, and screenshot positioning.
+
+## Credits
+
+Based on the original project by Adam Lyttle Apps:
+https://github.com/adamlyttleapps/claude-skill-aso-appstore-screenshots
