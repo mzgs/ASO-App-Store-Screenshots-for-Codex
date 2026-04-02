@@ -28,19 +28,15 @@ Codex skill for turning an iOS app project plus simulator captures into an App S
 
 ## Install
 
-Install this repository into Codex as the `aso-appstore-screenshots` skill:
+Clone this repository directly into Codex as the `aso-appstore-screenshots` skill:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R /path/to/ASO-App-Store-Screenshots-for-Codex ~/.codex/skills/aso-appstore-screenshots
+git clone https://github.com/mzgs/ASO-App-Store-Screenshots-for-Codex.git \
+  ~/.codex/skills/aso-appstore-screenshots
 ```
 
-Or symlink it during development:
 
-```bash
-mkdir -p ~/.codex/skills
-ln -sfn /path/to/ASO-App-Store-Screenshots-for-Codex ~/.codex/skills/aso-appstore-screenshots
-```
 
 Restart Codex after installing so the new skill is loaded.
 
