@@ -22,7 +22,7 @@ Use the bundled scripts:
 Expect two local prerequisites for the Python scripts:
 
 - `Pillow` must be installed in the Python environment used to run the scripts.
-- A bold `.ttf` or `.otf` headline font must be readable. `scripts/compose.py` checks common macOS and Linux paths and also accepts `--font` or `ASO_HEADLINE_FONT`.
+- A bold `.ttf` or `.otf` headline font must be readable. `scripts/compose.py` first checks bundled fonts in `.fonts/` or `fonts/`, then common macOS and Linux paths, and also accepts `--font` or `ASO_HEADLINE_FONT`.
 
 ## Resume State First
 

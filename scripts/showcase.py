@@ -18,7 +18,33 @@ FONT_SIZE_MAX = 48
 FONT_SIZE_MIN = 16
 TEXT_COLOUR = "#000000"
 BG_COLOUR = (255, 255, 255)
+SKILL_DIR = Path(__file__).resolve().parents[1]
+FONT_DIR_CANDIDATES = [SKILL_DIR / ".fonts", SKILL_DIR / "fonts"]
+PREFERRED_BUNDLED_FONTS = [
+    "Arial.ttf",
+    "DejaVuSans.ttf",
+    "Arial Bold.ttf",
+    "dejavu-sans-bold.ttf",
+]
+
+
+def bundled_font_candidates():
+    candidates = []
+    for font_dir in FONT_DIR_CANDIDATES:
+        if not font_dir.exists():
+            continue
+        for name in PREFERRED_BUNDLED_FONTS:
+            path = font_dir / name
+            if path.exists():
+                candidates.append(path)
+        for path in sorted(font_dir.glob("*")):
+            if path.suffix.lower() in {".ttf", ".otf"} and path not in candidates:
+                candidates.append(path)
+    return [str(path) for path in candidates]
+
+
 DEFAULT_FONT_CANDIDATES = [
+    *bundled_font_candidates(),
     "/Library/Fonts/SF-Pro-Display-Regular.otf",
     "/System/Library/Fonts/Supplemental/Arial.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",

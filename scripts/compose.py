@@ -35,15 +35,40 @@ DESC_LINE_GAP = 24
 MAX_TEXT_W = int(CANVAS_W * 0.70)
 MAX_VERB_W = int(CANVAS_W * 0.70)
 
+SKILL_DIR = Path(__file__).resolve().parents[1]
+FRAME_PATH = SKILL_DIR / "assets" / "device_frame.png"
+FONT_DIR_CANDIDATES = [SKILL_DIR / ".fonts", SKILL_DIR / "fonts"]
+PREFERRED_BUNDLED_FONTS = [
+    "Arial Bold.ttf",
+    "dejavu-sans-bold.ttf",
+    "Arial.ttf",
+    "DejaVuSans.ttf",
+]
+
+
+def bundled_font_candidates():
+    candidates = []
+    for font_dir in FONT_DIR_CANDIDATES:
+        if not font_dir.exists():
+            continue
+        for name in PREFERRED_BUNDLED_FONTS:
+            path = font_dir / name
+            if path.exists():
+                candidates.append(path)
+        for path in sorted(font_dir.glob("*")):
+            if path.suffix.lower() in {".ttf", ".otf"} and path not in candidates:
+                candidates.append(path)
+    return [str(path) for path in candidates]
+
+
 DEFAULT_FONT_CANDIDATES = [
     os.environ.get("ASO_HEADLINE_FONT"),
+    *bundled_font_candidates(),
     "/Library/Fonts/SF-Pro-Display-Black.otf",
     "/Library/Fonts/SF-Pro-Display-Heavy.otf",
     "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
 ]
-SKILL_DIR = Path(__file__).resolve().parents[1]
-FRAME_PATH = SKILL_DIR / "assets" / "device_frame.png"
 
 
 def hex_to_rgb(h):
